@@ -1640,7 +1640,7 @@ resource "aws_instance" "worker-1" {
     vpc_security_group_ids = [aws_security_group.matt-kube-worker-sg.id, aws_security_group.matt-kube-mutual-sg.id]
     key_name = "mattkey"
     subnet_id = "subnet-c41ba589"  # select own subnet_id of us-east-1a
-    # subnet_id = "subnet-077c9758"
+    subnet_id = "subnet-077c9758"
     availability_zone = "us-east-1a"
     tags = {
         Name = "worker-1"
@@ -1705,6 +1705,11 @@ git push origin dev
 
 ## MSP 16 - Create a QA Automation Environment with Kubernetes - Part-2
 
+git checkout dev
+git branch feature/msp-16
+git checkout feature/msp-16
+git push --set-upstream origin feature/msp-16
+
 - Create a Jenkins Job and name it as `test-creating-qa-automation-infrastructure` to test `bash` scripts creating QA Automation Infrastructure for `dev` manually.
   * Select `Freestyle project` and click `OK`
   * Select github project and write the url to your repository's page into `Project url` (https://github.com/[your-github-account]/petclinic-microservices)
@@ -1759,9 +1764,9 @@ ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i ${WORKSPACE}/
 - Prepare static inventory file with name of `hosts.ini` for Ansible under `ansible/inventory` folder using Docker machines private IP addresses.
 
 ```ini
-172.31.91.243   ansible_user=ubuntu  
-172.31.87.143   ansible_user=ubuntu
-172.31.90.30    ansible_user=ubuntu
+172.31.42.40   ansible_user=ubuntu  
+172.31.43.157   ansible_user=ubuntu
+172.31.36.1    ansible_user=ubuntu
 ```
 
 - Commit the change, then push to the remote repo.
