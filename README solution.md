@@ -2913,7 +2913,7 @@ ANS_KEYPAIR="matt-${APP_NAME}-qa.key"
 AWS_REGION="us-east-1"
 cd infrastructure/qa-k8s-terraform
 terraform init
-terraform apply -auto-approve
+terraform apply -auto-approve -no-color
 ```
 
 - Prepare dynamic inventory file with name of `qa_stack_dynamic_inventory_aws_ec2.yaml` for Ansible under `ansible/inventory` folder using Docker machines private IP addresses.
